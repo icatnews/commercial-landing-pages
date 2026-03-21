@@ -24,9 +24,10 @@ This repository is a curated collection of high-performance commercial landing p
 - **核心特色：** 日式文青風、互動菜單、React 預約表單。
 - **[點此查看詳細說明與技術細節](./01-cat-cafe/README.md)**
 
-### 🏋️ [02. (即將推出) 專業健身房 - 會員招募落地頁]
-- **產業類別：** 運動、健康、會員訂閱
-- **預計功能：** 課程排表、教練陣容、限時優惠方案。
+### ✨ [02. (即將推出) 極致美白精華 - 爆單銷售落地頁](./02-whitening-essence/)
+- **產業類別：** 醫美保養、美妝電商、零售轉化
+- **核心特色：** 醫美級精品質感、數據驅動轉化設計、科學成分解說、多入組優惠表單邏輯。
+- **[點此查看詳細說明與技術細節](./02-whitening-essence/README.md)**
 
 ---
 
