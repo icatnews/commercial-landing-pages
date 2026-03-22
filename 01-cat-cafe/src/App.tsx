@@ -257,6 +257,45 @@ export default function App() {
     }, 400);
   };
 
+  const handleReservationFromMenu = (itemName: string) => {
+    setFormData(prev => {
+      const prefix = "我想預定：";
+      let currentMessage = prev.message.trim();
+      
+      // 如果目前備註不包含前綴，則視為新開始
+      if (!currentMessage.startsWith(prefix)) {
+        return { ...prev, message: `${prefix}${itemName} x 1` };
+      }
+
+      // 提取品項部分
+      const itemsPart = currentMessage.substring(prefix.length);
+      const items = itemsPart.split("、").map(i => i.trim()).filter(i => i !== "");
+      
+      let found = false;
+      const updatedItems = items.map(item => {
+        // 檢查是否為當前點擊的餐點 (格式為 "名稱 x 數量")
+        if (item.startsWith(`${itemName} x `)) {
+          found = true;
+          const parts = item.split(" x ");
+          const count = parseInt(parts[parts.length - 1], 10) || 0;
+          return `${itemName} x ${count + 1}`;
+        }
+        return item;
+      });
+
+      if (!found) {
+        updatedItems.push(`${itemName} x 1`);
+      }
+
+      return { ...prev, message: `${prefix}${updatedItems.join("、")}` };
+    });
+
+    setSelectedItem(null);
+    setTimeout(() => {
+      scrollToSection('contact');
+    }, 400);
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -1074,8 +1113,8 @@ export default function App() {
                   </div>
                 </div>
 
-                <Button className="w-full mt-10" onClick={() => setSelectedItem(null)}>
-                  加入口袋名單
+                <Button className="w-full mt-10" onClick={() => handleReservationFromMenu(selectedItem.name)}>
+                  預約這道美味
                 </Button>
               </div>
             </motion.div>
