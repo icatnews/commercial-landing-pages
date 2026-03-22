@@ -22,7 +22,8 @@ This repository is a curated collection of high-performance commercial landing p
 ### 🐾 [01. 台北貓咪咖啡廳 - 療癒系預約落地頁](./01-cat-cafe/)
 - **產業類別：** 餐飲、寵物、預約服務
 - **核心特色：** 日式文青風、互動菜單、React 預約表單。
-- **[點此查看詳細說明與技術細節](./01-cat-cafe/README.md)**
+- * **🔗 即時預覽：** [https://meow-cafe-taipei.vercel.app/](https://meow-cafe-taipei.vercel.app/)
+* **特色：** 日式文青風、多樣餐點累加預約系統、手機端優化、EmailJS 真實郵件連動。
 
 ### ✨ [02. (即將推出) 極致美白精華 - 爆單銷售落地頁](./02-whitening-essence/)
 - **產業類別：** 醫美保養、美妝電商、零售轉化
