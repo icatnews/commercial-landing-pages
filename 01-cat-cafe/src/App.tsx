@@ -239,19 +239,19 @@ export default function App() {
   const nameInputRef = useRef<HTMLInputElement>(null);
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      // 考慮到頂部固定導覽列的高度 (h-20 = 80px)
-      const headerOffset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
-    }
-    setIsMenuOpen(false);
+    setIsMenuOpen(false); // 先關閉手機選單
+    setTimeout(() => {    // 延遲 300ms 避開動畫衝突
+      const element = document.getElementById(id);
+      if (element) {
+        const offset = 80; // 扣除上方導航列高度
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = element.getBoundingClientRect().top;
+        window.scrollTo({
+          top: elementRect - bodyRect - offset,
+          behavior: 'smooth'
+        });
+      }
+    }, 300);
   };
 
   const handleReservationFromCat = (catName: string) => {
