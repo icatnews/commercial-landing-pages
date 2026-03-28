@@ -339,7 +339,7 @@ export default function App() {
         <div className="lg:col-span-3 rounded-[3.5rem] overflow-hidden shadow-2xl h-[450px] relative border-4 border-white bg-white">
       <iframe 
         title="Photo Heart Studio Map"
-        src="https://maps.google.com/maps?q=台北市大安區四維路198巷30弄12號(影心影像工作室)&t=&z=17&ie=UTF8&iwloc=B&output=embed"
+        src="https://maps.google.com/maps?q=影心影像工作室&t=&z=17&ie=UTF8&iwloc=B&output=embed"
         width="100%" 
         height="100%" 
         style={{ border: 0 }} 
@@ -407,52 +407,59 @@ export default function App() {
       <AnimatePresence>
         {bookingService && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[130] bg-black/60 backdrop-blur-md flex items-center justify-center p-4">
-            <motion.div initial={{scale:0.9, y:20}} animate={{scale:1, y:0}} className="bg-white rounded-[3.5rem] p-12 max-w-lg w-full relative shadow-2xl">
-              <button onClick={() => setBookingService(null)} className="absolute top-8 right-8 p-3 bg-gray-100 rounded-full hover:bg-gray-200 transition-all shadow-sm"><X className="w-5 h-5" /></button>
-              <h3 className="text-3xl font-serif font-bold mb-10 border-b pb-6 text-[#D4AF37]">{bookingService.title} | 預約諮詢</h3>
-              <form ref={formRef} onSubmit={handleSendEmail} className="space-y-6">
-                <input type="hidden" name="service_name" value={bookingService.title} />
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">您的姓名</label>
-                    <input type="text" name="user_name" placeholder="例：林小姐" required className="w-full p-4 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all" />
+            <motion.div initial={{scale:0.9, y:20}} animate={{scale:1, y:0}} className="bg-white rounded-[3.5rem] max-w-lg w-full relative shadow-2xl overflow-hidden flex flex-col max-h-[85vh]">
+              {/* Sticky Header with Close Button */}
+              <div className="sticky top-0 bg-white z-20 px-8 md:px-12 py-6 border-b border-gray-50 flex justify-between items-center">
+                <h3 className="text-2xl md:text-3xl font-serif font-bold text-[#D4AF37]">{bookingService.title} | 預約諮詢</h3>
+                <button onClick={() => setBookingService(null)} className="p-3 bg-gray-100 rounded-full hover:bg-gray-200 transition-all shadow-sm"><X className="w-5 h-5" /></button>
+              </div>
+              
+              {/* Scrollable Content */}
+              <div className="p-8 md:p-12 pt-6 overflow-y-auto flex-1">
+                <form ref={formRef} onSubmit={handleSendEmail} className="space-y-6">
+                  <input type="hidden" name="service_name" value={bookingService.title} />
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">您的姓名</label>
+                      <input type="text" name="user_name" placeholder="例：林小姐" required className="w-full p-4 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all" />
+                    </div>
+                    <div>
+                      <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">聯絡電話</label>
+                      <input type="tel" name="user_phone" placeholder="0912-345-678" required className="w-full p-4 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all" />
+                    </div>
                   </div>
                   <div>
-                    <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">聯絡電話</label>
-                    <input type="tel" name="user_phone" placeholder="0912-345-678" required className="w-full p-4 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all" />
+                    <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">期望預約日期</label>
+                    <div className="relative w-full">
+                      <CalendarDays className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#D4AF37]" />
+                      <input 
+                        type="date" 
+                        name="booking_date" 
+                        required 
+                        className="w-full max-w-full p-4 pl-12 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all box-border" 
+                        style={{ boxSizing: 'border-box' }}
+                      />
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">期望預約日期</label>
-                  <div className="relative w-full">
-                    <CalendarDays className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#D4AF37]" />
-                    <input 
-                      type="date" 
-                      name="booking_date" 
-                      required 
-                      className="w-full p-4 pl-12 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all box-border" 
-                      style={{ boxSizing: 'border-box' }}
-                    />
+                  <div>
+                    <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">預約需求 / 備註</label>
+                    <textarea name="message" placeholder="例如：想詢問寵物攝影是否包含裝扮、或是有特殊修圖需求..." rows={4} className="w-full p-4 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all resize-none" />
                   </div>
-                </div>
-                <div>
-                  <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">預約需求 / 備註</label>
-                  <textarea name="message" placeholder="例如：想詢問寵物攝影是否包含裝扮、或是有特殊修圖需求..." rows={4} className="w-full p-4 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all resize-none" />
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <button type="submit" disabled={isSending} className="bg-[#1D1D1F] text-white py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 shadow-xl hover:bg-black transition-all disabled:opacity-50">
-                    {isSending ? "發送中..." : <><Send className="w-5 h-5" /> 提交預約單</>}
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <button type="submit" disabled={isSending} className="bg-[#1D1D1F] text-white py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 shadow-xl hover:bg-black transition-all disabled:opacity-50">
+                      {isSending ? "發送中..." : <><Send className="w-5 h-5" /> 提交預約單</>}
+                    </button>
+                    <button type="button" onClick={handleLineJump} className="bg-[#06C755] text-white py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 shadow-xl shadow-green-200 hover:scale-[1.02] transition-all">
+                      <ClipboardCheck className="w-6 h-6" /> 直接跳轉 LINE
+                    </button>
+                  </div>
+                  
+                  <button type="button" onClick={() => copyToClipboard(LINE_ID, 'LINE ID')} className="w-full bg-white text-gray-400 py-3 rounded-2xl font-bold text-xs flex items-center justify-center gap-2 border border-gray-100 hover:bg-gray-50 transition-all">
+                    <ExternalLink className="w-3 h-3" /> 僅複製 LINE ID
                   </button>
-                  <button type="button" onClick={handleLineJump} className="bg-[#06C755] text-white py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 shadow-xl shadow-green-200 hover:scale-[1.02] transition-all">
-                    <ClipboardCheck className="w-6 h-6" /> 直接跳轉 LINE
-                  </button>
-                </div>
-                
-                <button type="button" onClick={() => copyToClipboard(LINE_ID, 'LINE ID')} className="w-full bg-white text-gray-400 py-3 rounded-2xl font-bold text-xs flex items-center justify-center gap-2 border border-gray-100 hover:bg-gray-50 transition-all">
-                  <ExternalLink className="w-3 h-3" /> 僅複製 LINE ID
-                </button>
-              </form>
+                </form>
+              </div>
             </motion.div>
           </motion.div>
         )}
@@ -469,7 +476,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* --- 🚀 懸浮功能中心 (Floating Action Hub) --- */}
-      <div className="fixed bottom-8 right-8 z-[90] flex flex-col gap-4">
+      <div className="fixed bottom-8 right-2 md:right-8 z-[90] flex flex-col gap-4 items-end">
         <AnimatePresence>
           {isScrolled && (
             <motion.button
@@ -477,23 +484,23 @@ export default function App() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="w-14 h-14 bg-white text-[#D4AF37] rounded-full shadow-2xl flex items-center justify-center border border-gray-100 hover:scale-110 transition-all"
+              className="w-11 h-11 md:w-14 md:h-14 bg-white text-[#D4AF37] rounded-full shadow-2xl flex items-center justify-center border border-gray-100 hover:scale-110 transition-all"
             >
-              <ChevronUp className="w-6 h-6" />
+              <ChevronUp className="w-5 h-5 md:w-6 md:h-6" />
             </motion.button>
           )}
         </AnimatePresence>
         
-        <a href="tel:0915198790" className="w-14 h-14 bg-white text-[#D4AF37] rounded-full shadow-2xl flex items-center justify-center border border-gray-100 hover:scale-110 transition-all">
-          <Phone className="w-6 h-6" />
+        <a href="tel:0915198790" className="w-11 h-11 md:w-14 md:h-14 bg-white text-[#D4AF37] rounded-full shadow-2xl flex items-center justify-center border border-gray-100 hover:scale-110 transition-all">
+          <Phone className="w-5 h-5 md:w-6 md:h-6" />
         </a>
         
-        <a href="https://www.facebook.com/photoheartimagestudio" target="_blank" rel="noreferrer" className="w-14 h-14 bg-[#1877F2] text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-all">
-          <Facebook className="w-6 h-6" />
+        <a href="https://www.facebook.com/photoheartimagestudio" target="_blank" rel="noreferrer" className="w-11 h-11 md:w-14 md:h-14 bg-[#1877F2] text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-all">
+          <Facebook className="w-5 h-5 md:w-6 md:h-6" />
         </a>
         
-        <button onClick={() => setBookingService({title: "立即預約"})} className="bg-[#D4AF37] text-white px-6 py-4 rounded-full shadow-2xl flex items-center gap-3 font-bold hover:scale-105 transition-all">
-          <CalendarDays className="w-6 h-6" /> <span className="hidden sm:inline">立即預約</span>
+        <button onClick={() => setBookingService({title: "立即預約"})} className="bg-[#D4AF37] text-white w-11 h-11 md:w-auto md:px-6 md:py-4 rounded-full shadow-2xl flex items-center justify-center md:justify-start gap-3 font-bold hover:scale-105 transition-all">
+          <CalendarDays className="w-5 h-5 md:w-6 md:h-6" /> <span className="hidden sm:inline">立即預約</span>
         </button>
       </div>
 
