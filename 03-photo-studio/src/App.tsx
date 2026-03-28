@@ -171,7 +171,7 @@ export default function App() {
 
       {/* REVIEWS */}
       <section id="reviews" className="py-24 bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 mb-16 flex justify-between items-end">
+        <div className="max-w-7xl mx-auto px-6 mb-16 flex flex-col items-start gap-4 sm:flex-row sm:justify-between sm:items-end">
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="text-6xl font-bold">5.0</span>
@@ -218,8 +218,8 @@ export default function App() {
                 })} className="absolute inset-0 bg-black/50 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity font-bold text-lg tracking-widest uppercase">查看作品集</button>
               </div>
               <div className="p-10">
-                <div className="flex justify-between items-baseline mb-8">
-                  <h3 className="text-2xl font-bold tracking-tighter">{s.title}</h3>
+                <div className="flex flex-col items-start gap-2 sm:flex-row sm:justify-between sm:items-baseline mb-8">
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tighter">{s.title}</h3>
                   <div className="text-[#D4AF37] font-bold text-2xl font-mono">NT$ {s.price}</div>
                 </div>
                 <div className="space-y-4 mb-10 text-sm">
@@ -420,7 +420,7 @@ export default function App() {
               <div className="p-8 md:p-12 pt-6 overflow-y-auto flex-1">
                 <form ref={formRef} onSubmit={handleSendEmail} className="space-y-6">
                   <input type="hidden" name="service_name" value={bookingService.title} />
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-4 px-4 sm:px-0">
                     <div>
                       <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">您的姓名</label>
                       <input type="text" name="user_name" placeholder="例：林小姐" required className="w-full p-4 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all" />
@@ -430,7 +430,7 @@ export default function App() {
                       <input type="tel" name="user_phone" placeholder="0912-345-678" required className="w-full p-4 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all" />
                     </div>
                   </div>
-                  <div>
+                  <div className="px-4 sm:px-0">
                     <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">期望預約日期</label>
                     <div className="relative w-full">
                       <CalendarDays className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#D4AF37]" />
@@ -443,12 +443,12 @@ export default function App() {
                       />
                     </div>
                   </div>
-                  <div>
+                  <div className="px-4 sm:px-0">
                     <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">預約需求 / 備註</label>
                     <textarea name="message" placeholder="例如：想詢問寵物攝影是否包含裝扮、或是有特殊修圖需求..." rows={4} className="w-full p-4 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all resize-none" />
                   </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 sm:px-0">
                   <button type="submit" disabled={isSending} className="bg-[#1D1D1F] text-white py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 shadow-xl hover:bg-black transition-all disabled:opacity-50">
                     {isSending ? "發送中..." : <><Send className="w-5 h-5" /> 提交預約單</>}
                   </button>
@@ -457,7 +457,7 @@ export default function App() {
                   </button>
                 </div>
                 
-                <button type="button" onClick={() => copyToClipboard(LINE_ID, 'LINE ID')} className="w-full bg-white text-gray-400 py-3 rounded-2xl font-bold text-xs flex items-center justify-center gap-2 border border-gray-100 hover:bg-gray-50 transition-all">
+                <button type="button" onClick={() => copyToClipboard(LINE_ID, 'LINE ID')} className="mx-4 sm:mx-0 w-[calc(100%-2rem)] sm:w-full bg-white text-gray-400 py-3 rounded-2xl font-bold text-xs flex items-center justify-center gap-2 border border-gray-100 hover:bg-gray-50 transition-all">
                   <ExternalLink className="w-3 h-3" /> 僅複製 LINE ID
                 </button>
               </form>
