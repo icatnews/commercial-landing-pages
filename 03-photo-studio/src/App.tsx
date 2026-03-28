@@ -183,9 +183,10 @@ export default function App() {
             <ShieldCheck className="w-6 h-6" /> <span className="font-bold">Google 真實驗證</span>
           </div>
         </div>
-        <div className="flex gap-8 animate-marquee px-6">
+        {/* 💡 CSS 邏輯：電腦版跑馬燈，手機版 overflow-x-auto 手動滑動 */}
+        <div className="flex gap-8 overflow-x-auto animate-marquee px-6 pb-4 no-scrollbar snap-x snap-mandatory">
           {[...REAL_REVIEWS, ...REAL_REVIEWS].map((rev, idx) => (
-            <div key={idx} className="min-w-[400px] bg-[#FAF9F6] p-10 rounded-[3rem] border border-gray-100 flex flex-col justify-between hover:shadow-lg transition-shadow shadow-sm">
+            <div key={idx} className="min-w-[300px] sm:min-w-[400px] bg-[#FAF9F6] p-10 rounded-[3rem] border border-gray-100 flex flex-col justify-between hover:shadow-lg transition-shadow shadow-sm snap-center">
               <div>
                 <div className="w-14 h-14 rounded-full bg-white mb-6 flex items-center justify-center font-bold text-2xl text-[#D4AF37] shadow-inner">{rev.initial}</div>
                 <div className="flex gap-1 mb-4">
@@ -336,9 +337,10 @@ export default function App() {
 
     {/* 右側：寬扁版地圖 (佔比 3/5) */}
     {/* 高度鎖定 h-[450px]，底邊會剛好對準左側 FB 按鈕的底邊 */}
-        <div className="lg:col-span-3 rounded-[3.5rem] overflow-hidden shadow-2xl h-[450px] relative border-4 border-white bg-white">
+    <div className="lg:col-span-3 rounded-[3.5rem] overflow-hidden shadow-2xl h-[450px] relative border-4 border-white bg-white">
       <iframe 
         title="Photo Heart Studio Map"
+        /* 💡 最終解決方案：直接使用搜尋標籤 q= 模式，這會強制顯示紅針且絕對不會報錯 */
         src="https://maps.google.com/maps?q=影心影像工作室&t=&z=17&ie=UTF8&iwloc=B&output=embed"
         width="100%" 
         height="100%" 
@@ -445,25 +447,25 @@ export default function App() {
                     <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">預約需求 / 備註</label>
                     <textarea name="message" placeholder="例如：想詢問寵物攝影是否包含裝扮、或是有特殊修圖需求..." rows={4} className="w-full p-4 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all resize-none" />
                   </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <button type="submit" disabled={isSending} className="bg-[#1D1D1F] text-white py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 shadow-xl hover:bg-black transition-all disabled:opacity-50">
-                      {isSending ? "發送中..." : <><Send className="w-5 h-5" /> 提交預約單</>}
-                    </button>
-                    <button type="button" onClick={handleLineJump} className="bg-[#06C755] text-white py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 shadow-xl shadow-green-200 hover:scale-[1.02] transition-all">
-                      <ClipboardCheck className="w-6 h-6" /> 直接跳轉 LINE
-                    </button>
-                  </div>
-                  
-                  <button type="button" onClick={() => copyToClipboard(LINE_ID, 'LINE ID')} className="w-full bg-white text-gray-400 py-3 rounded-2xl font-bold text-xs flex items-center justify-center gap-2 border border-gray-100 hover:bg-gray-50 transition-all">
-                    <ExternalLink className="w-3 h-3" /> 僅複製 LINE ID
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <button type="submit" disabled={isSending} className="bg-[#1D1D1F] text-white py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 shadow-xl hover:bg-black transition-all disabled:opacity-50">
+                    {isSending ? "發送中..." : <><Send className="w-5 h-5" /> 提交預約單</>}
                   </button>
-                </form>
-              </div>
-            </motion.div>
+                  <button type="button" onClick={handleLineJump} className="bg-[#06C755] text-white py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 shadow-xl shadow-green-200 hover:scale-[1.02] transition-all">
+                    <ClipboardCheck className="w-6 h-6" /> 直接跳轉 LINE
+                  </button>
+                </div>
+                
+                <button type="button" onClick={() => copyToClipboard(LINE_ID, 'LINE ID')} className="w-full bg-white text-gray-400 py-3 rounded-2xl font-bold text-xs flex items-center justify-center gap-2 border border-gray-100 hover:bg-gray-50 transition-all">
+                  <ExternalLink className="w-3 h-3" /> 僅複製 LINE ID
+                </button>
+              </form>
+            </div>
           </motion.div>
-        )}
-      </AnimatePresence>
+        </motion.div>
+      )}
+    </AnimatePresence>
 
       {/* 放大圖片 (Lightbox) */}
       <AnimatePresence>
@@ -500,14 +502,18 @@ export default function App() {
         </a>
         
         <button onClick={() => setBookingService({title: "立即預約"})} className="bg-[#D4AF37] text-white w-11 h-11 md:w-auto md:px-6 md:py-4 rounded-full shadow-2xl flex items-center justify-center md:justify-start gap-3 font-bold hover:scale-105 transition-all">
-          <CalendarDays className="w-5 h-5 md:w-6 md:h-6" /> <span className="hidden sm:inline">立即預約</span>
+          <CalendarDays className="w-5 h-5 md:w-6 md:h-6" /> <span className="hidden md:inline">立即預約</span>
         </button>
       </div>
 
       <style>{`
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .animate-marquee { display: flex; animation: marquee 35s linear infinite; }
-        .animate-marquee:hover { animation-play-state: paused; }
+        @media (min-width: 640px) {
+          .animate-marquee { display: flex; animation: marquee 35s linear infinite; }
+          .animate-marquee:hover { animation-play-state: paused; }
+        }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
       `}</style>
     </div>
   );
