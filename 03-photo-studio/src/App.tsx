@@ -336,11 +336,10 @@ export default function App() {
 
     {/* 右側：寬扁版地圖 (佔比 3/5) */}
     {/* 高度鎖定 h-[450px]，底邊會剛好對準左側 FB 按鈕的底邊 */}
-    <div className="lg:col-span-3 rounded-[3.5rem] overflow-hidden shadow-2xl h-[450px] relative border-4 border-white bg-white">
+        <div className="lg:col-span-3 rounded-[3.5rem] overflow-hidden shadow-2xl h-[450px] relative border-4 border-white bg-white">
       <iframe 
         title="Photo Heart Studio Map"
-        /* 💡 最終解決方案：直接使用搜尋標籤 q= 模式，這會強制顯示紅針且絕對不會報錯 */
-        src="https://maps.google.com/maps?q=影心影像工作室&t=&z=17&ie=UTF8&iwloc=B&output=embed"
+        src="https://maps.google.com/maps?q=台北市大安區四維路198巷30弄12號(影心影像工作室)&t=&z=17&ie=UTF8&iwloc=B&output=embed"
         width="100%" 
         height="100%" 
         style={{ border: 0 }} 
@@ -425,9 +424,15 @@ export default function App() {
                 </div>
                 <div>
                   <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">期望預約日期</label>
-                  <div className="relative">
+                  <div className="relative w-full">
                     <CalendarDays className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#D4AF37]" />
-                    <input type="date" name="booking_date" required className="w-full p-4 pl-12 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all" />
+                    <input 
+                      type="date" 
+                      name="booking_date" 
+                      required 
+                      className="w-full p-4 pl-12 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all box-border" 
+                      style={{ boxSizing: 'border-box' }}
+                    />
                   </div>
                 </div>
                 <div>
@@ -488,7 +493,7 @@ export default function App() {
         </a>
         
         <button onClick={() => setBookingService({title: "立即預約"})} className="bg-[#D4AF37] text-white px-6 py-4 rounded-full shadow-2xl flex items-center gap-3 font-bold hover:scale-105 transition-all">
-          <CalendarDays className="w-6 h-6" /> 立即預約
+          <CalendarDays className="w-6 h-6" /> <span className="hidden sm:inline">立即預約</span>
         </button>
       </div>
 
