@@ -23,7 +23,22 @@ const REAL_REVIEWS = [
   { id: 5, initial: "邱", name: "邱婉淋 Eva", text: "效率非常快，當天拿到照片！服務真的很貼心。", date: "3 週前" },
   { id: 10, initial: "M", name: "Maggie Li", text: "畢業學士服寫真拍得很唯美，光線處理得非常優雅。", date: "4 個月前" },
   { id: 20, initial: "E", name: "Emily", text: "第二次回訪，老闆一如既往的細心與專業。大安區最推！", date: "1 週前" },
-  { id: 11, initial: "陳", name: "陳冠廷", text: "修圖技術一流，細節處理得非常好，完全沒有僵硬感。", date: "1 週前" }
+  { id: 11, initial: "陳", name: "陳冠廷", text: "修圖技術一流，細節處理得非常好，完全沒有僵硬感。", date: "1 週前" },
+  { id: 2, initial: "張", name: "張小明", text: "證件照拍得超棒，完全不像以前那種呆板的感覺，大推！", date: "2 個月前" },
+  { id: 3, initial: "W", name: "Wilson", text: "環境很舒服，攝影師很有耐心引導動作，成品非常滿意。", date: "5 個月前" },
+  { id: 4, initial: "L", name: "Linda Chen", text: "全家福拍得很溫馨，捕捉到了很多自然的瞬間，很感動。", date: "1 年前" },
+  { id: 6, initial: "王", name: "王大同", text: "寵物照拍得太可愛了！攝影師對動物很有愛心，推推。", date: "2 週前" },
+  { id: 7, initial: "S", name: "Sophia", text: "形象照很有質感，幫我提升了不少專業度，謝謝影心。", date: "3 個月前" },
+  { id: 8, initial: "H", name: "Henry", text: "效率高、品質好，修圖溝通也很順暢，非常推薦。", date: "6 個月前" },
+  { id: 9, initial: "J", name: "Jessica", text: "第一次拍寫真，本來很緊張，但攝影師很會帶氣氛，很放鬆。", date: "8 個月前" },
+  { id: 12, initial: "K", name: "Kevin", text: "光影處理得很高級，完全超乎預期，下次還會再來。", date: "2 週前" },
+  { id: 13, initial: "A", name: "Alice", text: "畢業照拍得很美，留下了很棒的回憶，服務態度也很好。", date: "5 個月前" },
+  { id: 14, initial: "B", name: "Brian", text: "專業度滿分，細節控一定會喜歡這裡的服務。", date: "1 個月前" },
+  { id: 15, initial: "C", name: "Cindy", text: "修圖自然不失真，這點真的很重要，非常滿意。", date: "3 週前" },
+  { id: 16, initial: "D", name: "David", text: "大安區最棒的影棚，沒有之一。服務跟品質都是頂級的。", date: "4 個月前" },
+  { id: 17, initial: "F", name: "Fiona", text: "很有溫度的攝影工作室，能感受到老闆對攝影的熱情。", date: "2 個月前" },
+  { id: 18, initial: "G", name: "Gary", text: "拍出來的效果很有雜誌感，朋友都說好看。", date: "6 個月前" },
+  { id: 19, initial: "I", name: "Iris", text: "預約流程簡單，現場引導專業，成品取件也很快。", date: "1 週前" }
 ];
 
 const SERVICES = [
@@ -184,7 +199,7 @@ export default function App() {
           </div>
         </div>
         {/* 💡 CSS 邏輯：電腦版跑馬燈，手機版 overflow-x-auto 手動滑動 */}
-        <div className="flex gap-8 overflow-x-auto animate-marquee px-6 pb-4 no-scrollbar snap-x snap-mandatory">
+        <div className="flex gap-8 overflow-x-auto animate-marquee px-6 pb-4 no-scrollbar snap-x snap-mandatory min-w-max">
           {[...REAL_REVIEWS, ...REAL_REVIEWS].map((rev, idx) => (
             <div key={idx} className="min-w-[300px] sm:min-w-[400px] bg-[#FAF9F6] p-10 rounded-[3rem] border border-gray-100 flex flex-col justify-between hover:shadow-lg transition-shadow shadow-sm snap-center">
               <div>
@@ -423,29 +438,29 @@ export default function App() {
                   <div className="grid grid-cols-2 gap-4 px-4 sm:px-0">
                     <div>
                       <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">您的姓名</label>
-                      <input type="text" name="user_name" placeholder="例：林小姐" required className="w-full p-4 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all" />
+                      <input type="text" name="user_name" placeholder="例：林小姐" required className="w-full h-14 px-4 py-3 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all appearance-none leading-normal" />
                     </div>
                     <div>
                       <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">聯絡電話</label>
-                      <input type="tel" name="user_phone" placeholder="0912-345-678" required className="w-full p-4 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all" />
+                      <input type="tel" name="user_phone" placeholder="0912345678" required maxLength={10} className="w-full h-14 px-4 py-3 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all appearance-none leading-normal" />
                     </div>
                   </div>
                   <div className="px-4 sm:px-0">
                     <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">期望預約日期</label>
-                    <div className="relative w-full">
+                    <div className="relative w-full mx-auto max-w-[90%]">
                       <CalendarDays className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#D4AF37]" />
                       <input 
                         type="date" 
                         name="booking_date" 
                         required 
-                        className="w-full max-w-full p-4 pl-12 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all box-border" 
+                        className="w-full box-border p-4 pl-12 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all" 
                         style={{ boxSizing: 'border-box' }}
                       />
                     </div>
                   </div>
                   <div className="px-4 sm:px-0">
                     <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">預約需求 / 備註</label>
-                    <textarea name="message" placeholder="例如：想詢問寵物攝影是否包含裝扮、或是有特殊修圖需求..." rows={4} className="w-full p-4 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all resize-none" />
+                    <textarea name="message" placeholder="例如：想詢問寵物攝影是否包含裝扮、或是有特殊修圖需求..." rows={4} className="w-full py-3 px-4 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all resize-none appearance-none leading-normal" />
                   </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 sm:px-0">
@@ -509,7 +524,7 @@ export default function App() {
       <style>{`
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @media (min-width: 640px) {
-          .animate-marquee { display: flex; animation: marquee 35s linear infinite; }
+          .animate-marquee { display: flex; animation: marquee 120s linear infinite; }
           .animate-marquee:hover { animation-play-state: paused; }
         }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
