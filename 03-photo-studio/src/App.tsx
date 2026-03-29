@@ -443,11 +443,11 @@ export default function App() {
                   <div className="grid grid-cols-2 gap-4 px-4 sm:px-0">
                     <div>
                       <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">您的姓名</label>
-                      <input type="text" name="user_name" placeholder="例：林小姐" required className="w-full h-14 px-4 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all appearance-none leading-[normal] text-base flex items-center" />
+                      <input type="text" name="user_name" placeholder="例：林小姐" required className="w-full h-12 px-4 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all appearance-none text-base" style={{ lineHeight: 'normal' }} />
                     </div>
                     <div>
                       <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">聯絡電話</label>
-                      <input type="tel" name="user_phone" placeholder="0912345678" required maxLength={10} className="w-full h-14 px-4 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all appearance-none leading-[normal] text-base flex items-center" />
+                      <input type="tel" name="user_phone" placeholder="0912345678" required maxLength={10} className="w-full h-12 px-4 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all appearance-none text-base" style={{ lineHeight: 'normal' }} />
                     </div>
                   </div>
                   <div className="px-4 sm:px-0">
@@ -458,8 +458,8 @@ export default function App() {
                         type="date" 
                         name="booking_date" 
                         required 
-                        className="w-full h-14 box-border px-4 pl-12 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all appearance-none leading-[normal] text-base flex items-center" 
-                        style={{ boxSizing: 'border-box' }}
+                        className="w-full h-12 box-border px-4 pl-12 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all appearance-none text-base" 
+                        style={{ boxSizing: 'border-box', lineHeight: 'normal' }}
                       />
                     </div>
                   </div>
