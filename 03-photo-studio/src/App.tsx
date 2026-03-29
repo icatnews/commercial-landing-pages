@@ -443,11 +443,11 @@ export default function App() {
                   <div className="grid grid-cols-2 gap-4 px-4 sm:px-0">
                     <div>
                       <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">您的姓名</label>
-                      <input type="text" name="user_name" placeholder="例：林小姐" required className="w-full h-14 px-4 py-3 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all appearance-none leading-none" />
+                      <input type="text" name="user_name" placeholder="例：林小姐" required className="w-full h-14 px-4 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all appearance-none leading-[normal] text-base flex items-center" />
                     </div>
                     <div>
                       <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">聯絡電話</label>
-                      <input type="tel" name="user_phone" placeholder="0912345678" required maxLength={10} className="w-full h-14 px-4 py-3 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all appearance-none leading-none" />
+                      <input type="tel" name="user_phone" placeholder="0912345678" required maxLength={10} className="w-full h-14 px-4 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all appearance-none leading-[normal] text-base flex items-center" />
                     </div>
                   </div>
                   <div className="px-4 sm:px-0">
@@ -458,14 +458,14 @@ export default function App() {
                         type="date" 
                         name="booking_date" 
                         required 
-                        className="w-full box-border p-4 pl-12 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all" 
+                        className="w-full h-14 box-border px-4 pl-12 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all appearance-none leading-[normal] text-base flex items-center" 
                         style={{ boxSizing: 'border-box' }}
                       />
                     </div>
                   </div>
                   <div className="px-4 sm:px-0">
                     <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">預約需求 / 備註</label>
-                    <textarea name="message" placeholder="例如：想詢問寵物攝影是否包含裝扮、或是有特殊修圖需求..." rows={4} className="w-full py-3 px-4 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all resize-none appearance-none leading-normal" />
+                    <textarea name="message" placeholder="例如：想詢問寵物攝影是否包含裝扮、或是有特殊修圖需求..." rows={4} className="w-full py-3 px-4 rounded-2xl border bg-gray-50 focus:border-[#D4AF37] outline-none transition-all resize-none appearance-none leading-normal text-base" />
                   </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 sm:px-0">
