@@ -199,7 +199,7 @@ export default function App() {
           </div>
         </div>
         {/* 💡 CSS 邏輯：電腦版跑馬燈，手機版 overflow-x-auto 手動滑動 */}
-        <div className="flex gap-8 overflow-x-auto animate-marquee px-6 pb-4 no-scrollbar snap-x snap-mandatory min-w-max">
+        <div className="flex flex-nowrap gap-8 overflow-x-auto animate-marquee px-6 pb-8 no-scrollbar snap-x snap-mandatory sm:min-w-max">
           {[...REAL_REVIEWS, ...REAL_REVIEWS].map((rev, idx) => (
             <div key={idx} className="min-w-[300px] sm:min-w-[400px] bg-[#FAF9F6] p-10 rounded-[3rem] border border-gray-100 flex flex-col justify-between hover:shadow-lg transition-shadow shadow-sm snap-center">
               <div>
@@ -231,6 +231,11 @@ export default function App() {
                   prefix: s.prefix,
                   count: s.count
                 })} className="absolute inset-0 bg-black/50 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity font-bold text-lg tracking-widest uppercase">查看作品集</button>
+                
+                {/* 手機版作品集點擊提示 */}
+                <div className="absolute bottom-4 right-4 bg-[#D4AF37]/90 text-white px-4 py-2 rounded-full text-xs font-bold flex items-center gap-2 md:hidden shadow-xl backdrop-blur-sm border border-white/20">
+                  <ZoomIn className="w-4 h-4" /> 查看作品集
+                </div>
               </div>
               <div className="p-10">
                 <div className="flex flex-col items-start gap-2 sm:flex-row sm:justify-between sm:items-baseline mb-8">
@@ -447,7 +452,7 @@ export default function App() {
                   </div>
                   <div className="px-4 sm:px-0">
                     <label className="block text-gray-400 mb-2 font-bold uppercase tracking-widest text-[10px]">期望預約日期</label>
-                    <div className="relative w-full mx-auto max-w-[90%]">
+                    <div className="relative w-full">
                       <CalendarDays className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#D4AF37]" />
                       <input 
                         type="date" 
